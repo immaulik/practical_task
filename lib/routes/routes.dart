@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:practical_task/modules/init_screen.dart';
 import 'package:practical_task/modules/login/login.dart';
 import 'package:practical_task/modules/login/login_controller.dart';
 import 'package:practical_task/modules/main_screen/main_screen.dart';
@@ -10,10 +9,6 @@ import 'package:practical_task/routes/pages.dart';
 
 abstract class Routes {
   static List<GetPage> pages = [
-    GetPage(
-      name: Pages.initialRoute,
-      page: () => InitScreen(),
-    ),
     GetPage(
       name: Pages.login,
       page: () => Login(),

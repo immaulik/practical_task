@@ -38,6 +38,13 @@ class AppTheme {
                     color: Colors.yellow,
                     fontWeight: FontWeight.w700,
                     fontFamily: FontConst.metropolis))),
+        scrollbarTheme: ScrollbarThemeData(
+            thumbColor: MaterialStateProperty.all(
+              ColorConst.primary,
+            ),
+            thickness: MaterialStateProperty.all(
+              5,
+            )),
         textTheme: TextTheme(
             displayLarge: TextStyle(
                 fontSize: 24,

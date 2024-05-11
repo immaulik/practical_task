@@ -8,6 +8,7 @@ import 'package:practical_task/utils/logger_utils.dart';
 import '../../models/user_model.dart';
 import '../services/storage_service/storage.dart';
 
+
 class AppUtils {
   AppUtils._();
 
@@ -28,7 +29,6 @@ class AppUtils {
     final user = await Storage.instance.getUser();
     if (user!.userId != 0) {
       userModel = user;
-      logger.d(user.toJson());
       final lag = await Storage.instance.getLanguage();
       if (lag != null) {
         Get.updateLocale(Locale(lag));

@@ -70,7 +70,7 @@ class MainScreenController extends GetxController {
       isSearching(true);
       searchList.value = orderList.where((order) {
         return order.products.any(
-            (product) => product.productName.toLowerCase().startsWith(value));
+            (product) => product.productName.toLowerCase().contains(value));
       }).toList();
     } else {
       isSearching(false);

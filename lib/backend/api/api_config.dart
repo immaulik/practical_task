@@ -55,7 +55,7 @@ class ApiConfig {
   }) async {
     FormData formData = FormData.fromMap(body);
     return _dio
-        .put(
+        .post(
           url,
           data: formData,
           queryParameters: params,

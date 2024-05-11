@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:practical_task/backend/api/api_future.dart';
 import 'package:practical_task/const/color_const.dart';
 import 'package:practical_task/modules/main_screen/main_screen_controller.dart';
-import 'package:practical_task/utils/logger_utils.dart';
 import 'package:practical_task/widgets/network_image_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -96,90 +95,96 @@ class MainScreen extends GetView<MainScreenController> {
 
   Widget _listView() {
     return controller.filterList.isNotEmpty
-        ? ListView.builder(
-            shrinkWrap: true,
-            itemCount: controller.filterList.length,
-            itemBuilder: (context, index) {
-              return Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: ColorConst.lightBlue),
-                margin: EdgeInsets.only(bottom: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 16, right: 16, top: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${AppLocalizations.of(context)!.order_id} : ${controller.filterList[index].orderId}",
-                            maxLines: 2,
-                            style: Get.textTheme.displayMedium!
-                                .copyWith(fontSize: 12),
-                          ),
-                          Gap(4),
-                          Text(
-                            "${AppLocalizations.of(context)!.date} : ${DateFormat('dd MMM, yyyy').format(controller.filterList[index].date)}",
-                            maxLines: 2,
-                            style: Get.textTheme.displayMedium!
-                                .copyWith(fontSize: 12),
-                          ),
-                          Gap(4),
-                          Text(
-                            "${AppLocalizations.of(context)!.amount} : ${controller.filterList[index].paidAmount}",
-                            maxLines: 2,
-                            style: Get.textTheme.displayMedium!
-                                .copyWith(fontSize: 12),
-                          ),
-                          Gap(4),
-                          Text(
-                            "${AppLocalizations.of(context)!.status} : ${controller.filterList[index].paymentStatus}",
-                            maxLines: 2,
-                            style: Get.textTheme.displayMedium!
-                                .copyWith(fontSize: 12),
-                          ),
-                          Gap(4),
-                          Text(
-                            "${AppLocalizations.of(context)!.no_of_products} : ${controller.filterList[index].products.length}",
-                            maxLines: 2,
-                            style: Get.textTheme.displayMedium!
-                                .copyWith(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(),
-                    SizedBox(
-                      height: 60,
-                      child: ListView.builder(
-                        padding: EdgeInsets.only(left: 10),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: controller.filterList[index].products.length,
-                        itemBuilder: (context, pIndex) {
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                                right: 10, top: 10, bottom: 10),
-                            child: InkWell(
-                              onTap: () => controller.onProductTap(controller
-                                  .filterList[index].products[pIndex]),
-                              child: NetworkImageWidget(
-                                imgUrl: controller.filterList[index]
-                                    .products[pIndex].productOtherUrl,
-                                height: 50,
-                                width: 40,
-                                boxFit: BoxFit.contain,
-                              ),
+        ? Scrollbar(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: controller.filterList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: ColorConst.lightBlue),
+                  margin: EdgeInsets.only(bottom: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${AppLocalizations.of(context)!.order_id} : ${controller.filterList[index].orderId}",
+                              maxLines: 2,
+                              style: Get.textTheme.displayMedium!
+                                  .copyWith(fontSize: 12),
                             ),
-                          );
-                        },
+                            Gap(4),
+                            Text(
+                              "${AppLocalizations.of(context)!.date} : ${DateFormat('dd MMM, yyyy').format(controller.filterList[index].date)}",
+                              maxLines: 2,
+                              style: Get.textTheme.displayMedium!
+                                  .copyWith(fontSize: 12),
+                            ),
+                            Gap(4),
+                            Text(
+                              "${AppLocalizations.of(context)!.amount} : ${controller.filterList[index].paidAmount}",
+                              maxLines: 2,
+                              style: Get.textTheme.displayMedium!
+                                  .copyWith(fontSize: 12),
+                            ),
+                            Gap(4),
+                            Text(
+                              "${AppLocalizations.of(context)!.status} : ${controller.filterList[index].paymentStatus}",
+                              maxLines: 2,
+                              style: Get.textTheme.displayMedium!
+                                  .copyWith(fontSize: 12),
+                            ),
+                            Gap(4),
+                            Text(
+                              "${AppLocalizations.of(context)!.no_of_products} : ${controller.filterList[index].products.length}",
+                              maxLines: 2,
+                              style: Get.textTheme.displayMedium!
+                                  .copyWith(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
+                      Divider(),
+                      SizedBox(
+                        height: 60,
+                        child: Scrollbar(
+                          child: ListView.builder(
+                            padding: EdgeInsets.only(left: 10),
+                            scrollDirection: Axis.horizontal,
+                            itemCount:
+                                controller.filterList[index].products.length,
+                            itemBuilder: (context, pIndex) {
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 10, top: 10, bottom: 10),
+                                child: InkWell(
+                                  onTap: () => controller.onProductTap(
+                                      controller
+                                          .filterList[index].products[pIndex]),
+                                  child: NetworkImageWidget(
+                                    imgUrl: controller.filterList[index]
+                                        .products[pIndex].productOtherUrl,
+                                    height: 50,
+                                    width: 40,
+                                    boxFit: BoxFit.contain,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           )
         : Center(
             child: Text(

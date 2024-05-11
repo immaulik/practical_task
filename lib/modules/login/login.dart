@@ -40,9 +40,11 @@ class Login extends GetView<LoginController> {
                     CustomTextField(
                       validatorFunction: (value) {
                         if (value != null && value.isEmpty) {
-                          return AppLocalizations.of(context)!.please_enter_email;
+                          return AppLocalizations.of(context)!
+                              .please_enter_email;
                         } else if (value != null && !GetUtils.isEmail(value)) {
-                          return AppLocalizations.of(context)!.please_enter_valid_email;
+                          return AppLocalizations.of(context)!
+                              .please_enter_valid_email;
                         } else {
                           return null;
                         }
@@ -90,9 +92,11 @@ class Login extends GetView<LoginController> {
                         ),
                         validatorFunction: (value) {
                           if (value != null && value.isEmpty) {
-                            return AppLocalizations.of(context)!.please_enter_password;
+                            return AppLocalizations.of(context)!
+                                .please_enter_password;
                           } else if (value != null && value.length < 8) {
-                            return AppLocalizations.of(context)!.password_should_be_minimum_8_character;
+                            return AppLocalizations.of(context)!
+                                .password_should_be_minimum_8_character;
                           } else {
                             return null;
                           }
@@ -103,8 +107,7 @@ class Login extends GetView<LoginController> {
                         padding: EdgeInsets.symmetric(
                           vertical: 10,
                         ),
-                        inputType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
+                        textInputAction: TextInputAction.done,
                         prefixIcon: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
