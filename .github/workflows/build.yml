@@ -28,21 +28,19 @@ jobs:
       - name: Set Localization
         run: flutter gen-l10n
       - name: Build Apk
-        run: flutter build apk
+        run: flutter build apk --release
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: v5.0.0  # Replace with your tag name
-          release_name: Release v5.0.0  # Replace with your release name
+          tag_name: v6.0.0  # Replace with your tag name
+          release_name: Release v6.0.0  # Replace with your release name
           body: |
-            Release of version 1.0.5
+            Release of version 1.0.6
           draft: false
       - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        uses: actions/upload-artifact@v1
         with:
           name: build/app/outputs/flutter-apk/app-release.apk
           path: app-release.apk
