@@ -19,6 +19,6 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
       - name: Set Localization
-        uses: flutter gen-l10n
+        run: flutter gen-l10n
       - name: Build Apk
         run: flutter build apk
