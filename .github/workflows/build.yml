@@ -44,5 +44,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          asset_path: build/app/outputs/flutter-apk/app-release.apk
-          asset_name: app-release.apk
+          name: build/app/outputs/flutter-apk/app-release.apk
+          path: app-release.apk
