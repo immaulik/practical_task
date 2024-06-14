@@ -34,10 +34,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: v3.0.0  # Replace with your tag name
-          release_name: Release v3.0.0  # Replace with your release name
+          tag_name: v4.0.0  # Replace with your tag name
+          release_name: Release v4.0.0  # Replace with your release name
           body: |
-            Release of version 1.0.2
+            Release of version 1.0.3
           draft: false
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
