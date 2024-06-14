@@ -29,3 +29,14 @@ jobs:
         run: flutter gen-l10n
       - name: Build Apk
         run: flutter build apk
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            tag_name: v1.0.0  # Replace with your tag name
+            release_name: Release v1.0.0  # Replace with your release name
+            body: |
+              Release of version 1.0.0
+            draft: false
+            release: false
