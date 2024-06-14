@@ -119,7 +119,6 @@ class MainScreen extends GetView<MainScreenController> {
                               style: Get.textTheme.displayMedium!
                                   .copyWith(fontSize: 12),
                             ),
-                            Gap(4),
                             Text(
                               "${AppLocalizations.of(context)!.date} : ${DateFormat('dd MMM, yyyy').format(controller.filterList[index].date)}",
                               maxLines: 2,
