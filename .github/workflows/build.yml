@@ -31,14 +31,15 @@ jobs:
         run: flutter build apk --release
 
       - name: Create GitHub Release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: v10.0.0  # Replace with your tag name
-          release_name: Release v10.0.0  # Replace with your release name
+          tag_name: v11.0.0  # Replace with your tag name
+          release_name: Release v11.0.0  # Replace with your release name
           body: |
-            Release of version 1.0.10
+            Release of version 1.0.11
           draft: false
 
       - name: Upload APK as Release Asset
@@ -46,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./makefile.apk  # Adjust the path to your APK file
           asset_name: makefile.apk  # Name of the APK file in the release
           asset_content_type: application/vnd.android.package-archive
