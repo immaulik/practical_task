@@ -30,14 +30,17 @@ jobs:
       - name: Build Apk
         run: flutter build apk --release
 
-      - name: List generated files
-        run: find build/app/outputs/flutter-apk/ -type
+      - name: List generated files (Windows)
+        if: runner.os == 'Windows'
+        run: Get-ChildItem -Path build\app\outputs\flutter-apk\* -Recurse
 
-      - name: Move APK to Root
-        run: mv build/app/outputs/flutter-apk/app-release.apk app-release.apk
+      - name: Move APK to Root (Windows)
+        if: runner.os == 'Windows'
+        run: Move-Item -Path build\app\outputs\flutter-apk\app-release.apk -Destination app-release.apk
 
-      - name: Verify APK exists
-        run: ls -l app-release.apk
+      - name: Verify APK exists (Windows)
+        if: runner.os == 'Windows'
+        run: Test-Path -Path app-release.apk
 
       - name: Create GitHub Release
         id: create_release
@@ -45,10 +48,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: v14.0.0  # Replace with your tag name
-          release_name: Release v14.0.0  # Replace with your release name
+          tag_name: v15.0.0  # Replace with your tag name
+          release_name: Release v15.0.0  # Replace with your release name
           body: |
-            Release of version 1.0.14
+            Release of version 1.0.15
           draft: false
 
       - name: Upload APK as Release Asset
